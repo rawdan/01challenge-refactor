@@ -3,8 +3,9 @@ require_relative '../bin/rental'
 
 RSpec.describe Rental do
   it 'can instantiate a new rental object with a movie' do
-    rental = Rental.new(movie: 'Jaws')
-    expect(rental.movie).to eq(:movie => "Jaws")
+    movie = Movie.new(title_for_movie: "Jaws")
+    rental = Rental.new(movie: movie.title_for_movie)
+    expect(rental.movie[:movie][:title_for_movie]).to eq("Jaws")
   end
 end
 
