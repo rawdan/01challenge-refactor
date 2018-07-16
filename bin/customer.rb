@@ -7,7 +7,6 @@ class Customer
 
   def initialize(customer_name: customer_name)
     @customer_name = customer_name
-    @rentals ||= []
   end
 
 end
@@ -17,6 +16,6 @@ m2 = Movie.new(title_for_movie: "Incredibles 2", price_code: Movie::CHILDRENS_MO
 m3 = Movie.new(title_for_movie: "Avengers", price_code: Movie::REGULAR)
 r = Rental.new(movie: m, days_rented: 2)
 r2 = Rental.new(movie:m2, days_rented: 2)
-r3 = Rental.new(movie:m3, days_rented: 2)
+r3 = Rental.new(movie:m3, days_rented: 3)
 c = Customer.new(customer_name: "Robert")
 puts Interactors::SetPriceAndBonusPoints.call(r3,c)
