@@ -1,5 +1,6 @@
 module Interactors
   SetPriceAndBonusPoints = lambda { |rental, customer|
+    result = "Rental record for #{customer.customer_name}\n"
     if rental.movie.price_code == Movie::NEW_RELEASE
       amount_owed = rental.days_rented * 3
       frequent_renter_points = 1
@@ -13,7 +14,8 @@ module Interactors
       amount_owed = (rental.days_rented - 3) * 1.5 if rental.days_rented > 3
       frequent_renter_points = 1
     end
-    puts "The customer #{customer.customer_name} rented #{rental.movie.title_for_movie}"
-    puts "He was awarded #{frequent_renter_points} frequent renter points and owes a total ammount of #{amount_owed}"
+    result += "Amount owed is $#{amount_owed}\n"
+    result += "You earned #{frequent_renter_points} frequent renter points"
+    result
   }
 end

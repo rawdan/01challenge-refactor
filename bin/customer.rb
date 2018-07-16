@@ -8,20 +8,4 @@ class Customer
   def initialize(customer_name: customer_name)
     @customer_name = customer_name
   end
-
-  def statement(customer, rented_movies)
-    rented_movies.each do |rented_movie|
-      Interactors::SetPriceAndBonusPoints.call(rented_movie, customer)
-    end
-  end
-
 end
-
-m = Movie.new(title_for_movie: "Jaws", price_code: Movie::NEW_RELEASE)
-m2 = Movie.new(title_for_movie: "Incredibles 2", price_code: Movie::CHILDRENS_MOVIE)
-m3 = Movie.new(title_for_movie: "Avengers", price_code: Movie::REGULAR)
-r = Rental.new(movie: m, days_rented: 2)
-r2 = Rental.new(movie:m2, days_rented: 2)
-r3 = Rental.new(movie:m3, days_rented: 3)
-c = Customer.new(customer_name: "Robert")
-c.statement(c, [r,r2,r3])
