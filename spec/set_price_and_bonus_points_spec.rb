@@ -5,17 +5,21 @@ require_relative '../bin/movie'
 require_relative '../bin/customer'
 
 RSpec.describe Interactors::SetPriceAndBonusPoints do
-  let(:movie)    {Movie.new(title_for_movie: "Jaws", price_code: Movie::NEW_RELEASE) }
-  let(:movie2)   {Movie.new(title_for_movie: "Incredibles 2", price_code: Movie::CHILDRENS_MOVIE)}
-  let(:movie3)   {Movie.new(title_for_movie: "Avengers", price_code: Movie::REGULAR)}
-  let(:rental)   {Rental.new(movie: movie, days_rented: 2)}
-  let(:rental2)  {Rental.new(movie: movie2, days_rented: 2)}
-  let(:rental3)  {Rental.new(movie: movie3, days_rented: 3)}
+  let(:new_movie)    {Movie.new(title_for_movie: "Jaws", price_code: Movie::NEW_RELEASE) }
+  let(:kids_movie)   {Movie.new(title_for_movie: "Incredibles 2", price_code: Movie::CHILDRENS_MOVIE)}
+  let(:regular_movie)   {Movie.new(title_for_movie: "Avengers", price_code: Movie::REGULAR)}
+  let(:new_rental)   {Rental.new(movie: new_movie, days_rented: 2)}
+  let(:kids_rental)  {Rental.new(movie: kids_movie, days_rented: 2)}
+  let(:regular_rental)  {Rental.new(movie: regular_movie, days_rented: 3)}
   let(:customer) {Customer.new(customer_name: "Robert")}
 
   describe 'calculates and prints out a statement' do
-    it 'can calculate a price and bonus points awarded based on type of movie and number of days rented' do
-      expect(Interactors::SetPriceAndBonusPoints.call(rental, customer)).to eq "Rental record for Robert\nAmount owed is $6\nYou earned 2 frequent renter points"
+    it 'can calculate a price and bonus points awarded for a new realease movie rented for 2 days' do
+      expect(Interactors::SetPriceAndBonusPoints.call(new_rental, customer)).to eq "Rental record for Robert\nAmount owed is $6\nYou earned 2 frequent renter points"
+    end
+
+    it 'can calculate a price and bonus points awarded for a kids movie rented for 2 days' do
+      expect(Interactors::SetPriceAndBonusPoints.call(kids_rental, customer)).to eq "Rental record for Robert\nAmount owed is $1.5\nYou earned 1 frequent renter points"
     end
   end
 end
