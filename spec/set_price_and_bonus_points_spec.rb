@@ -14,7 +14,7 @@ RSpec.describe Interactors::SetPriceAndBonusPoints do
   let(:customer)        {Customer.new(customer_name: "Robert")}
 
   describe 'calculates and prints out a statement' do
-    it 'can calculate a price and bonus points awarded for a new realease movie rented for 2 days' do
+    it 'can calculate a price and bonus points awarded for a new release movie rented for 2 days' do
       expect(Interactors::SetPriceAndBonusPoints.call(new_rental, customer)).to eq "Rental record for Robert\nAmount owed is $6\nYou earned 2 frequent renter points"
     end
 
