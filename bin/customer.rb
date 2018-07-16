@@ -34,7 +34,7 @@ class Customer
       # add frequent renter points
       frequent_renter_points += 1
       # add bonus for a two day new release rental
-      # frequent_renter_points += 1 if _element.movie.price_code == Movie.NEW_RELEASE && _element.days_rented > 1
+      frequent_renter_points += 1 if _element.movie.price_code == Movie::NEW_RELEASE && _element.days_rented > 1
 
       # show figures for this rental
       result += "\t" + _element.movie.title_for_movie + "\t" + this_amount.to_s + "\n"
