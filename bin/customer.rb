@@ -15,7 +15,8 @@ class Customer
   end
 
   def statement
-    total_amount, freqent_renter_points = 0, 0
+    total_amount = 0
+    frequent_renter_points = 0
     result = "Rental Record for #{@customer_name}\n"
     @rentals.each do |_element|
       this_amount = 0
@@ -31,9 +32,9 @@ class Customer
       end
 
       # add frequent renter points
-      freqent_renter_points += 1
+      frequent_renter_points += 1
       # add bonus for a two day new release rental
-      # freqent_renter_points += 1 if _element.movie.price_code == Movie.NEW_RELEASE && _element.days_rented > 1
+      # frequent_renter_points += 1 if _element.movie.price_code == Movie.NEW_RELEASE && _element.days_rented > 1
 
       # show figures for this rental
       result += "\t" + _element.movie.title_for_movie + "\t" + this_amount.to_s + "\n"
@@ -41,12 +42,12 @@ class Customer
     end
     # add footer lines
     result += "Amount owed is #{total_amount.to_s}\n"
-    result += "You earned #{freqent_renter_points.to_s} frequent renter points"
+    result += "You earned #{frequent_renter_points.to_s} frequent renter points"
     result
   end
 end
 
-m = Movie.new(title_for_movie: "Jaws", price_code: Movie::CHILDRENS_MOVIE)
+m = Movie.new(title_for_movie: "Jaws", price_code: Movie::NEW_RELEASE)
 r = Rental.new(movie: m, days_rented: 2)
 c = Customer.new(customer_name: "Robert")
 c.add_rental_object_to_list(r)
