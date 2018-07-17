@@ -41,3 +41,20 @@ RSpec.describe Interactors::SetPriceAndBonusPoints do
     end
   end
 end
+
+# We have code comments
+# Now for those of you that are new to my blog
+# or are simply curious as to why I am so opposed to comments
+# the reason is twofold and boils down to this:
+#
+# The existence of code comments is proof of hard to understand code
+# and hard to understand code logic.
+# If you need to add comments to your code
+# to make it readable, chances are you need to refactor more
+#
+# And secondly, I have yet to meet a developer that once tasked with
+# making changes to commented code will take the time to
+# improve and change the comments so that they now reflect the new
+# code reality. So what happens is that by the time the third developer
+# come up to the code, the comments say one story because they are outdated
+# and the code tells a whole other story
