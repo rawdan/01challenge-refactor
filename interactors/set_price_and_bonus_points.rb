@@ -11,8 +11,7 @@ module Interactors
         rental.days_rented > 2 ? amount_owed += (rental.days_rented - 2) * 1.5 : amount_owed += 2
         frequent_renter_points += 1
       else rental.movie.price_code == Movie::CHILDRENS_MOVIE
-      amount_owed += 1.5
-      amount_owed += (rental.days_rented - 3) * 1.5 if rental.days_rented > 3
+      rental.days_rented > 3 ? amount_owed += (rental.days_rented - 3) * 1.5 : amount_owed += 1.5
       frequent_renter_points += 1
       end
     end

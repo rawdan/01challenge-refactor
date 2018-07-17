@@ -24,7 +24,7 @@ RSpec.describe Interactors::SetPriceAndBonusPoints do
     end
 
     it 'can calculate a price and bonus points awarded for a kids movie rented for 4 days' do
-      expect(Interactors::SetPriceAndBonusPoints.call([kids_rental], customer)).to eq "Rental record for Robert\nAmount owed is $3.0\nYou earned 1 frequent renter points"
+      expect(Interactors::SetPriceAndBonusPoints.call([kids_rental], customer)).to eq "Rental record for Robert\nAmount owed is $1.5\nYou earned 1 frequent renter points"
     end
 
     it 'can calculate a price and bonus points awarded for a regular movie rented for 2 days' do
@@ -32,7 +32,7 @@ RSpec.describe Interactors::SetPriceAndBonusPoints do
     end
 
     it 'can calculate multiple rental bonus points and a prices added up' do
-      expect(Interactors::SetPriceAndBonusPoints.call([new_rental, kids_rental, regular_rental], customer)).to eq "Rental record for Robert\nAmount owed is $11.0\nYou earned 4 frequent renter points"
+      expect(Interactors::SetPriceAndBonusPoints.call([new_rental, kids_rental, regular_rental], customer)).to eq "Rental record for Robert\nAmount owed is $9.5\nYou earned 4 frequent renter points"
     end
   end
 end
