@@ -7,7 +7,7 @@ module Interactors
       individual_film_amount = 0
       if rental.movie.price_code == Movie::NEW_RELEASE
         individual_film_amount += rental.days_rented * 3
-        Movie::NEW_RELEASE && rental.days_rented > 1 ? frequent_renter_points += 2 : frequent_renter_points += 1
+        rental.days_rented > 1 ? frequent_renter_points += 2 : frequent_renter_points += 1
       elsif rental.movie.price_code == Movie::REGULAR
         rental.days_rented > 2 ? individual_film_amount += (rental.days_rented - 2) * 1.5 : individual_film_amount += 2
         frequent_renter_points += 1
